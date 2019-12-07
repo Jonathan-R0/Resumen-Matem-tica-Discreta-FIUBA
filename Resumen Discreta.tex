@@ -1,0 +1,582 @@
+\documentclass[titlepage,a4paper,12pt,twoside]{article}
+% titlepage: Hace que el tıtulo y el resumen queden en una página aparte. El resumen se indica con la instrucción \abstract{..}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenx}
+\usepackage{graphicx}
+\linespread{1}
+\pagestyle{myheadings}
+\title{Resumen Matemática Discreta}
+
+\author{ Jonathan David Rosenblatt }
+\date{ Primer Cuatrimestre, 2019 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AQUI COMENZAMOS EL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%Lo primero que hacemos es crear el titulo.
+\maketitle
+
+%Creamos los indices que sean necesarios. Insertamos un salto de linea entre cada índice.
+\newpage
+\tableofcontents %Índice general
+
+\newpage
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AQUI EMPEZAMOS A ESCRIBIR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Trabajo Práctico I}
+
+\subsection{Lógica y Conjuntos}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|r|c|c|c|c|c|c|c|c|c|}
+\hline
+ $p$ & $q$ & $p'$ & $p\cdot q$  & $p+q$ & $p\oplus q$ & $p\Rightarrow q$  & $p\Leftrightarrow q$ & $p\downarrow q$ & $p\uparrow q$ \\
+\hline
+0 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+0 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \\
+1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 \\
+1 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 0 \\
+
+\hline
+\end{tabular}
+\begin{center}
+Tabla de valores lógicos.
+\end{center}
+\label{tabla}
+\end{table}
+
+Recordemos que todas las funciones lógicas tienen su contraparte en funciones de conjuntos. Particularmente $pq \equiv P \cap Q $, $p + q \equiv P \cup Q $, $\textbf{F} \equiv \emptyset $, $\textbf{T} \equiv \textbf{U} $, $p \rightarrow q \equiv P \subset Q $, $ P - Q \equiv pq'.$\\
+
+$Propiedades $ $ varias:$
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+ $Conmutatividad: p + q = q + p , pq = qp$\\ 
+ $Distributividad: p(q + r) = pq + pr , p + qr = (p + q)(p + r)$\\
+ $Neutros: p + \textbf{F} = \textbf{F} , p\textbf{T} = \textbf{T}$\\
+ $Complemento : p + p' = \textbf{T} , pp' = \textbf{F} , \textbf{F'} = \textbf{T} , \textbf{T'} = \textbf{F} $\\
+ $Acotaci\acute{o}n : p + \textbf{T} = \textbf{T} , p\textbf{F} = \textbf{F}$\\
+ $Asociativa : (p + q) + r = p + (1 + r) , (pq)r = p(qr)$\\
+ $Involuci\acute{o}n : (p')' = p$\\
+ $De Morgan : (p + q)' = p'q' , (pq)' = p' + q'$\\
+ $Idempotencia : p + p = p , pp = p$\\
+ $Absorci\acute{o}n : p + pq = p , p(p + q) = p$\\
+ $Nor:  (p + q)' = p'q' = p \downarrow q , p = (p \downarrow p)'$\\
+ $Nand:  (pq)' = p' + q' = p \uparrow q , p = (p \uparrow p)'$\\
+ $x \leqslant y \Leftrightarrow xy = x \Leftrightarrow xy' = 0 \Leftrightarrow x' + y = 1$\\
+ $X = Y \Leftrightarrow X \subseteq Y \wedge Y \subseteq X $\\
+ $x = y \Leftrightarrow x'y + xy' = \textbf{F}$\\
+ $X \cup Y = \emptyset \Rightarrow X = \emptyset \wedge Y = \emptyset$\\
+ $X \cap Y' = \emptyset \equiv X \subset Y \equiv Y' \subset X'$\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+\begin{flushleft}
+Forma conjuntiva: producto de sumas.\\
+Forma disyuniva: suma de productos.\\
+Forma normalizada: aparecen todas las variables en todos los términos de la expresión.\\
+\end{flushleft}
+
+\newpage
+Formas de demostrar proposiciones:
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+ $Directo: p \Rightarrow q \equiv $ $  Contrarrec\acute{i}proco: q' \Rightarrow p'$\\
+ $Rec\acute{i}proco:  q \Rightarrow p \equiv $ $  Contrario: p' \Rightarrow q'$\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+\subsection{Álgebras de Boole}
+
+Un álgebra de Boole se estructura como la séxtupla $(B, +, \cdot , ', 0, 1)$ siendo $+$ la suma, $\cdot$ el producto, $'$ el complemento, $0_{B}$ el elemento neutro de la suma booleana y $1_{B}$ el elemento neutro del producto booleano.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+ $x+\overline{x} = 1_{B}$\\
+ $x \cdot \overline{x} = 0_{B}$\\
+ $x+x = x \cdot x = x$\\
+ $x \cdot y = 1_{B} \leftrightarrow x = 1_{B} \wedge y = 1_{B}$\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+Dado un álbebra de Boole, se define un subálgebra de Boole $(A, +, \cdot , ', 0_{B}, 1_{B}) $ $\forall x,y \in A \wedge A \subset B$ si y solo si: $x+y \in A, x \cdot y \in A, \overline{x} \in A $ $\forall x \in A$\\
+
+Sea un álbegra de Boole $(A, +, \cdot , ', 0, 1) $; el producto cartesiano se define como: $A \times A$  = $\{(x,y)/x \in A \wedge y \in A\}$\\
+
+Si $A = \{a,b,c\}$ entonces todas las posibles relaciones binarias $(x \mathcal{R} y)$ con $x,y \in A$ pueden ser expresadas con el conjunto $\mathcal{R}_{n}$ tal que $\mathcal{R}_{1} = \emptyset $ , $\mathcal{R}_{2} = \{(a,a)\} $ , $\mathcal{R}_{3} = \{(a,a),(a,b)\} $ , $\cdots$ , $\mathcal{R}_{n} = \{A \times A\} $. Notamos que $a \mathcal{R} b$ es equivalente a decir $(a,b) \in \mathcal{R}.$\\
+
+La matriz de Adyacencia, $Mr$, de una relación, $ \mathcal{R} $, se define como la matriz compuesta por elementos del conjunto binario $\{0,1\}$. $Mr(i,j) = 1$ si $\exists i \mathcal{R} j$ y $Mr(i,j) = 0$ si $\nexists i \mathcal{R} j$. Además, $Mr^T$ se define de la siguiente forma: $Mr^T(i,j) = 1$ si $Mr(i,j) = 0$ y viceversa $\forall i \neq j$. Particularmente $Mr^T(i,i) = 0$ si $Mr(i,i) = 0$ y $Mr^T(i,i) = 1$ si $Mr(i,i) = 1$.
+
+\begin{center}
+$\mathcal{R} $ $ o $ $ \mathcal{S} = Ms \cdot Mr = \mathcal{S}^{-1} $ $o $ $\mathcal{R}^{-1}$\\
+$(\mathcal{R} $ $ o $ $ \mathcal{S})^{-1} = Mr^{-1} \cdot Ms^{-1}$\\
+$(\mathcal{R} + \mathcal{S})^{-1} = \mathcal{R}^{-1} + \mathcal{S}^{-1}$\\
+\end{center}
+
+\begin{flushleft}
+$Propiedades $ $ de $ $ las $ $ relaciones $ $(A \neq \emptyset):$\\
+$ $\\
+$Propiedad $ $reflexiva: \forall x \in A$ se cumple que $x \mathcal{R} x$. Sea $Mr$ la matriz de adyacencia de la relación; la cual será reflexiva si $I \leqslant Mr$. Finalmente, si tenemos el grafo que representa las relaciones, el mismo será reflexivo si $ \exists $ loop $ \forall x \in \mathcal{R} $ \\
+$ $\\
+$Propiedad $ $sim\acute{e}trica: \forall x,y \in A$ si $\exists $ $x \mathcal{R} y \Rightarrow  \exists y \mathcal{R} x$. Sea $Mr$ la matriz de adyacencia de la relación; la cual será simétrica si $Mr = Mr^T$. Finalmente, si tenemos el grafo que representa la relación, la misma será simétrica si se cumple que ($\forall x,y  \in $ grafo de la relación) para toda arista que va de $x$ hacia $y$ , $\exists$ arista que va de $y$ hacia $x$. \\
+$ $\\
+$Propiedad $ $antisim\acute{e}trica: \forall x,y \in A$ si $\exists $ $x \mathcal{R} y$ $\wedge$ $y \mathcal{R} x$ $\Rightarrow$ $x = y$. Sea $Mr$ la matriz de adyacencia de la relación; la cual será antisimétrica si $Mr \cdot Mr^T \leqslant I$ \textit{(no es producto de fila por columna, es producto de elemento a elemento)}. Finalmente, si tenemos el grafo que representa la relación, la misma será antisimétrica si se cumple que ($\forall x,y  \in $ grafo de la relación) para toda arista que va de $x$ hacia $y$ , $\nexists$ arista que va de $y$ hacia $x$. \\ 
+$ $\\
+$Propiedad $ $transitiva: \forall x,y,z \in A$ si $\exists $ $x \mathcal{R} y \wedge y \mathcal{R} z \Rightarrow x \mathcal{R} z$. Sea $Mr$ la matriz de adyacencia de la relación; la cual será transitiva si $Mr \cdot Mr = Mr^2 \leqslant Mr$ \textit{(es producto de fila por columna)}. Finalmente, en el grafo de la relación, se dirá que el mismo es transitivo si $\forall$ camino de $x$ hacia $y$ hacia $z$, podemos encontrar un camino directo de $x$ a $z$.\\
+$ $\\
+\end{flushleft}
+
+Si la relación cumple con las reflexividad, la simetría y la transitividad; se dice que esta es una \textit{relación de equivalencia.} En cambio, si la relación cumple con la reflexividad, la antisimetría y la transitividad; se dice que esta es una \textit{relación de orden.}\\
+
+Se conoce a la relación $x \preccurlyeq y$ como la que existe cuando $x \cdot y = x$.\\
+
+Un átomo $(a)$, tal que $a \in B $ $\wedge $ $a \neq 0_{B}$, cumple una de estas dos condiciones ($\forall x \in B)$:
+
+\begin{center}
+$a \cdot x = a$ \\
+$a \cdot x = 0_{B}$ \\
+\end{center}
+
+\subsection{Isomorfismos entre Álgebras de Boole}
+
+Sea $AB_{1} = (B_{1},+_{1},\cdot_{1},\neg_{1},0_{1},1_{1})$ y $AB_{2} = (B_{2},+_{2},\cdot_{2},\neg_{2},0_{2},1_{2})$, $f$ es un isomorfismo de $B_{1} \rightarrow B_{2}$ biyectivo cuando:\\
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+ $\forall x,y \in B_{1} , f(x+_{1}y)=f(x)+_{2}f(y)$\\
+ $\forall x,y \in B_{1} , f(x\cdot_{1}y)=f(x)\cdot_{2}f(y)$\\
+ $\forall x \in B_{1} , f(\neg x)=\neg f(x)$\\
+ $f(0_{1}) = 0_{2}$\\
+ $f(1_{1}) = 1_{2}$\\
+ Si $x \preccurlyeq y \Rightarrow f(x) \preccurlyeq f(y)$\\
+ Si $a$ es un átomo, $f(a)$ también lo es, tal que $a \in B_{1} \wedge f(a) \in B_{2}$.\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+Si tenemos $n$ cantidad o número de átomos, diremos que $\exists $ $n!$ posibles isomorfismos entre otras álgebras de Boole.\\
+
+La clausura transitiva es el mínimo conjunto de elementos que hace que $\mathcal{R}$ sea transitiva.
+
+\subsection{Relaciones de Orden}
+
+Para toda relación de orden, su grafo representante de la relación puede ser representado por un \textit{Diagrama de Hasse.} El mismo se representa igual que el grafo de la relación, pero en esta borramos las reflexividades y las transitividades "de menor largo".\\
+
+Se dice que el conjunto está totalmente ordenado si en su Diagrama de Hasse, el grafo resultante es uno conexo (es decir existe un camino entre todos los vértices del mismo) y si no posee ciclos (que es equivalente a decir que para todo par de vértices pertenecientes al grafo, siempre existe solo un camino que los conecta). De lo contrario este estará parcialmente ordenado.\\
+
+Sea $H$ el diagrama de Hasse de la relación de orden y $H_{1}$, un subgrafo tal que $H_{1} \in H$. Se podrán notar las siguientes características de $H_{1}$:\\
+
+$Propiedades $ $ varias:$
+\begin{flushleft}
+ $Cotas $ $superiores $: Es el conjunto compuesto por los vértices que están\\ "sobre" del conjunto de vértices de $H_{1}$ y el máximo de $H_{1} $.\\
+ $Cotas $ $inferiores $: Es el conjunto compuesto por los vértices que están\\ "debajo" del conjunto de vértices de $H_{1}$ y el mínimo de $H_{1} $.\\
+ $Supremo: $ la menor cota superior.\\
+ $\acute{I}nfimo: $ la mayor cota inferior.\\
+ $Maximal: $ El conjunto de valores que "se encuentran arriba de todo"\\ componen el maximal. Si este conjunto tiene solo un elemento, se dice que el mismo\\ es tanto maximal como $m\acute{a}ximo$.\\
+ $Minimal: $ El conjunto de valores que "se encuentran abajo de todo"\\ componen el minimal. Si este conjunto tiene solo un elemento, se dice que el mismo\\ es tanto minimal como $m\acute{i}nimo$.\\
+\end{flushleft}
+
+
+
+Las cotas inferiores, cotas superiores, supremos y mínimos existen en $H$, en cambio el máximo, mínimo, maximal y minimal existen en $H_{1}$.\\
+
+\subsection{Relaciones de Equivalencia}
+
+Las clases de equivalencia, que se pueden notar como: $[a], \overline{a}, cl(a)$ y se define el conjunto de la siguiente forma: $[a] = \{x \in A / $ $x \mathcal{R} a\}$\\
+
+Una partición de $A$, $A_{i}$ cumple que:
+\begin{center}
+ $A_{i} \subset A$\\
+ $A_{i} \neq \emptyset$\\
+ $A_{i} \bigcap A_{j} = \emptyset$\\
+ $A_{1} \bigcup A_{2} \bigcup \cdots \bigcup A_{i} = A$\\
+\end{center}
+
+Un \textit{conjunto} cociente, $\frac{A}{\mathcal{R}}$ , define una partición de $A$, y está compuesta por la mínima cantidad de clases de equivalencia que conforman al mismo. Se eliminan conjuntos igualmente definidos.\\
+
+Si decimos que $a|b$ entonces $a$ divide a $b$, y $b$ es múltiplo de $a$. Además notamos la siguiente definición: 
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+ $a = b(mod $ $n) \Leftrightarrow n|(a-b) \Leftrightarrow a = kn + b$.\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+\subsection{Autómatas}
+
+Se define un automata fínito determinista como $M = (\Sigma,\mathcal{Q},q_{0},\Gamma,\mathcal{F})$. Donde $\Sigma$, sucesión finita de caracteres, es el alfabeto; $\Sigma^{*}$ el conjunto de todas las posibles cadenas definidas sobre $\Sigma$; $\Sigma^{n}$ el conjunto de cadenas de longitud $n$ sobre $\Sigma$; $\mathcal{Q}$ el conjunto de estados (es decir "los vértices del autómata"); $q_{0}$ el estado inicial; $\Upsilon$ la función de transición $\mathcal{Q} \times \Sigma \rightarrow \mathcal{Q}$; $\mathcal{F}$ el conjunto de aceptación, $L(M)$ el lenguaje del autómata, definido de la forma: $\{x \in \Sigma^{*} / \Upsilon^{*}(q_{0},x) \in \mathcal{F}\}$, con $\Upsilon^{*}: \mathcal{Q} \times \Sigma^{*} \rightarrow \mathcal{Q}$; finalmente la expresión: $| $ $ x $ $ |_{a} = n$ es equivalente a decir, que la sucesión de palabras, debe contener $n$ letras $a$.\\
+
+\section{Trabajo Práctico II}
+
+\subsection{Inducción Matemática}
+
+Sea $P(n)$ una propiedad que se define en el conjunto de $\mathbb{N}$. Esta propiedad se demostrará por inducción de la siguiente manera:
+\begin{enumerate}
+\item Se debe demostrar que $P(n_{0})$ es verdadera, siendo $n_{0} \in \mathbb{N}$ el primer elemento del conjunto para la cual la propiedad se cumple. 
+\item Asumimos que $P(n)$ es verdadera $\forall n \geqslant n_{0}$ y con $n \in \mathbb{N}$.
+\item Si se demuestra que $P(n) \Rightarrow P(n+1)$, la propiedad será verdadera $\forall n \in \mathbb{N}$.\\
+\end{enumerate}
+
+Esto solo funciona para conjuntos bien ordenados, es decir, que tienen un elemento mínimo.
+
+\subsection{Relaciones de Recurrencia}
+$ $\\
+Sea $X_{n}: \mathbb{N}_{0} \rightarrow \mathbb{R}$, diremos que la relación de recurrencia de primer orden tiene la siguiente forma: $X_{n+1} = A_{n} \cdot X_{n} + B_{n}$.\\
+
+\begin{flushleft}
+Sea $X_{0}$ la condición inicial; se puede expresar a $X_{n}$ de la siguiente forma:
+\end{flushleft}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+$X_{1} = A_{0} \cdot X_{0} + B_{0}$\\
+$X_{2} = A_{1} \cdot X_{1} + B_{1} = A_{1} \cdot (A_{0} \cdot X_{0} + B_{0}) + B_{1}$\\
+$ $\vdots$ $\\
+$X_{n} = X_{0} \cdot \displaystyle \prod_{i=1}^{n-1} A_{i} + \displaystyle \sum_{k=0}^{n-1}$($\displaystyle \prod_{i=k+1}^{n-1} A_{i}$) $\cdot B_{k}$\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+Sea $X_{n}: \mathbb{N}_{0} \rightarrow \mathbb{R}$, diremos que la relación de recurrencia lineal homogenea de segundo orden tiene la siguiente forma: $X_{n+2} + C_{n+1} \cdot X_{n+1} + C_{n} \cdot X_{n} = 0$. Las soluciones del mismo tienen la forma de $X_{n} = c \cdot R^n$ y con $c \neq 0, R \neq 0$. Al ser de segundo orden, necesito dos condiciones iniciales para poder conseguir el resultado exacto.\\
+
+Al reemplazar $X_{n} = c \cdot R^n$ en nuestra ecuación de segundo orden, obtendremos el polinomio característico igualado a cero, el cual nos dará las soluciones para $R_{1}$ y $R_{2}$. Notamos que $R_{1}, R_{2}, \cdots , R_{n} \in \mathbb{C}$.\\
+
+Recordamos brevemente que:
+\begin{flushleft}
+$z^n = | $ $z $ $|^n \cdot (cos(n \cdot \alpha )+i \cdot sen(n \cdot \alpha ))$\\
+$\overline{z} = | $ $z $ $| \cdot (cos(-\alpha )+i \cdot sen(-\alpha ))$\\
+$cos(\alpha) = cos(-\alpha)$\\
+$sen(\alpha) = -sen(\alpha)$\\
+\end{flushleft}
+
+Si de una ecuación de recurrencia conseguimos la solución:\\ $X_{n} = c_{1} \cdot R^n + c_{2} \cdot R^n + c_{3} \cdot R^n$ y sus términos no son linealmente independientes entre sí, multiplicaremos por $n^k$ a estos para que si lo sean, y la solución ahora sería: $X_{n} = c \cdot R^n + (c \cdot R^n) \cdot n + (c \cdot R^n) \cdot n^2$.\\
+
+Sea $X_{n}: \mathbb{N}_{0} \rightarrow \mathbb{R}$, diremos que la relación de recurrencia no homogenea tiene la  forma: $X_{n} + C_{n-1} \cdot X_{n-1} + C_{n-2} \cdot X_{n-2} + \cdots + C_{n-k} \cdot X_{n-k} = f(n)$. Las soluciones del mismo tienen la forma de $X_{n} = {X_{n}}^h + {X_{n}}^p$ siendo ${X_{n}}^h$ la solución del homogeneo y ${X_{n}}^p$ la solución del partícular.\\
+
+Los pasos para resolver esta ecuación no homogenea son:
+\begin{enumerate}
+\item Propongo la solución del particular, la cual obtengo de la tabla de soluciones, correspondiente a la $f(n)$ correcta.
+\item Consigo ${X_{n}}^h = X_{n} = c \cdot R^n$ igualando la parte homogenea a cero, y por separado sustituyo  ${X_{n}}^p$ en la parte homogenea y lo igualo a $f(n)$ para obtener ${X_{n}}^p$.
+\item Ahora con las condiciones iniciales despejamos $X_{n} = {X_{n}}^h + {X_{n}}^p$.
+\end{enumerate}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+ $f(n)$ & ${X_{n}}^p$\\
+\hline
+$a$ (cte) & $c$ (cte)\\
+$n$ & $a_{1} \cdot n + a_{0}$\\
+$n^t$ & $a_{t} \cdot n^t + a_{t-1} \cdot n^{t-1} + \cdots + a_{0}$\\
+$a^n$ & $c \cdot a^n$\\
+$sen( \alpha ) \vee cos( \alpha )$ & $A \cdot sen(n \cdot \alpha ) + B \cdot cos(n \cdot \alpha)$\\
+$a^n \cdot n^t$ & $a^n \cdot (a_{t} \cdot n^t + a_{t-1} \cdot n^{t-1} + \cdots + a_{0})$\\
+$a^n \cdot (sen( \alpha )) \vee a^n \cdot (cos( \alpha ))$ & $a^n \cdot (A \cdot sen(n \cdot \alpha ) + B \cdot cos(n \cdot \alpha)$\\
+$n + a$ & $(n \cdot b + c) \cdot n$\\
+\hline
+\end{tabular}
+\label{tabla}
+\end{table}
+
+\begin{flushleft}
+La sucesión de Fibonacci es: $F_{n} = F_{n-1}+F_{n+2}$.\\
+$ $\\
+Y su solución es: $\displaystyle F_{n} = \frac{\varphi^n - (1-\varphi)^n}{\sqrt{5}}$ , $\displaystyle \varphi = \frac{1 + \sqrt{5}}{2}$.\\
+$ $\\
+Torres de Hanói: $H_{n} = 2H_{n-1} + 1$.\\
+\end{flushleft}
+
+\section{Trabajo Práctico III}
+
+\subsection{Introducción a la Teoría de Grafos}
+
+En teoría de grafos, diremos que $G = (V(G),E(G))$ siendo $V(G)$ el conjunto de vértices del grafo, $E(G)$ el conjunto de aristas del grafo, $|V(G)| = n$ es el \textit{orden} (cantidad de vértices) y $|E(G)| = m$ es el \textit{tamaño} (cantidad de aristas).\\
+
+Un \textit{camino} se define como una sucesión de vértices y aristas. Un \textit{trail} es un camino que no repite aristas. Un \textit{path} es un camino que no repite vértices. Un \textit{ciclo} $(C_{n})$ es un camino cerrado, sin vértices repetidos (excepto por el primer y último vértice). Un \textit{circuito} es un camino cerrado sin aristas repetidas.
+
+\begin{center}
+$K(C_{n}) = 2 $ , si $n$ es par $K(C_{n}) = 3 $ , si $n \geqslant 3$ es impar
+\end{center}
+
+Un \textit{grafo camino} $(P_{n})$, es cuyo path máximo es igual al mismo grafo, es decir, el grafo es el path máximo.
+
+\begin{center}
+$K(P_{n}) = 2 $ , $\forall $ $n \geqslant 2$
+\end{center}
+
+El \textit{degree} o \textit{grado} de un vértice, es la cantidad de aristas que inciden en el mismo. Por definición, en un loop la arista que se conecta a al mismo vértice añade un grado extra.
+
+\begin{center}
+$\displaystyle \sum_{k=0}^{n} d(v_{k}) = 2m$\\
+\end{center}
+
+\textit{Degree Sequence:} "$ $conjunto" formado por todos los grados de todos los vértices del grafo, ordenados de menor a mayor. Se escribe usando paréntesis.\\
+
+\textit{Grado mínimo:} $\delta (G) = min_{v}(d(v))$.\\
+
+\textit{Grado máximmo:} $\Delta (G) = max_{v}(d(v))$.\\
+
+\textit{Excentricidad:} la máxima distancia de $i$ a $j; e(G) = max_{v_{i}}(d(v_{i},v_{j}))$.\\
+
+\textit{Diámetro} $\phi(G)$: la máxima excentricidad del grafo.\\
+
+\textit{Radio} $R(G)$: la mínima excentricidad del grafo.
+
+\begin{center}
+$R(G) \leqslant \phi(G) \leqslant 2R(G)$\\
+\end{center}
+
+\textit{Centro:} conjunto de vértices de excentricidad mínima.\\
+
+\textit{Periferia:} conjunto de vértices de excentricidad máxima.\\
+
+\textit{Perimetro:} longitud mínima de un cíclo.\\
+
+Propiedades para las distancias entre vértices $(\forall $ $u,v,w \in V(G))$:
+
+\begin{center}
+$d(u,v) \geqslant 0$\\
+$ $\\
+$d(u,v) = 0 \Rightarrow u = v$\\
+$ $\\
+$d(u,w) = d(u,v) + d(v,w)$\\
+$ $\\
+$\nexists$ camino entre $u$ y $v \Leftrightarrow d(u,v) = \infty$ \\
+\end{center}
+
+\textit{Grafo regular:} $\forall $ $ v \in V(G), d(v) = k$\\
+
+\textit{Grafo completo} $K_{n}$: siempre existe un camino que conecta a todo par de vértices pertenecientes al grafo.
+
+\begin{center}
+$\forall $ $v \in K_{n} $ , $ d(v) = n - 1$\\
+$ $\\
+$\displaystyle m = \frac{n!}{2!(n-2)!} = \binom{n}{k}$\\
+$ $\\
+$K_{n}$ es planar sii $n < 5$\\
+$ $\\
+$\sigma (K_{n}) = \{n-1,1-n\}$\\
+\end{center}
+
+Sea $G = (V(G),E(G))$ y $G'$ su \textit{complemento}, tal que $G' = (V(G'),E(G'))$: $V(G') = V(G) \wedge E(G') = E(K_{n}) - E(G)$. $G$ y $G'$ \textit{jamás} pueden ser conexas a la vez.\\
+
+\textit{Isomorfismo:} propiedad o relación entre grafos que comparten elementos particulares como $ \Delta (G),\delta (G),R(G), \phi (G)$. Si $G$ y $H$ son isomorfos entonces: $G \cong H$. Formalmente hablando, el isomorfismo entre grafos existe al demostrarse que $\forall $ $v \in V(G) $ $\exists $ $ \Phi:V(G) \rightarrow V(H)$, con $\Phi$ biyectiva. Se debe cumplir que $\forall $ $e_{1} \in E(G) $ con $e_{1} = \{u,v\}$, $\exists $ $ e_{2} \in E(H)$ tal que $e_{2} = \{ \Phi (u), \Phi (v)\}$,\\ con $u,v \in V(G)$ y $\Phi (u), \Phi (v) \in V(H)$. Los isomorfismos preservan las\\ $k$-regularidades y sucesiones gráficas.\\
+
+$G_{2}$ es un \textit{subgrafo} de $G_{1}$ si $V(G_{2}) \subset V(G_{1})$ y $E(G_{2}) \subset E(G_{1})$.\\
+
+\textit{Tree}: grafo conexo sin ciclos, tal que $m = n - 1$.\\
+
+Sea $A$ la \textit{matriz de adyacencia} de $G$. $A_{ij} = 1$ si $ \exists $ $ e \in E(G)$ tal que $e = \{v_{i},v_{j}\}$. $A_{ij} = 0$ en caso contrario. Además sea $A^k$; entonces ${A_{ij}}^k$ representa la cantidad de caminos de longitud $k$ que existen entre $v_{i}$ y $v_{j}$.\\
+
+\textit{Grafo autocomplementario:} isomorfo a su complemento. $n = 0$ (mod 4) o $n = 1$ (mod 4).\\
+
+\textit{Grafo simple}: no posee loops, y solo existe como máximo una arista que conecte a dos vértices.
+
+\begin{center}
+$\displaystyle m \leqslant \binom{n}{2}$\\
+$ $\\
+$d(v_{k}) = {A_{kk}}^2$\\
+$ $\\
+$2m = \displaystyle \sum_{i=1}^{n} {\lambda_{i}}^2$\\
+$ $\\
+$6 \tau = \displaystyle \sum_{i=1}^{n} {\lambda_{i}}^2 $\\
+\end{center}
+
+\textit{Grafo euleriano:} es el grafo conexo tal que posee un path cerrado que contiene a todas sus aristas sin repetirlas. Es \textit{semieuleriano} si el path no es cerrado. Para que un grafo bipartito completo sea euleriano, $n$ debe ser par. Y $\forall $ $ v \in V(G), d(v) = 0$ (mod 2).\\
+
+\textit{Grafo hamiltoniano:} es el grafo conexo tal que posee un path cerrado que contiene a todos sus vertices sin repetirlos. Ningún grafo bipartito es hamiltoniano si $n$ es impar.\\
+
+\textit{Teorema de Dirac:} Sea $G$ un grafo conexo, simple y sin lazos; si $\delta (G) \geqslant 2$, entonces $G$ es hamiltoniano.
+
+\textit{Teorema de Ore:} Sea $G$ un grafo conexo, simple y sin lazos; $\forall $ $v,u \in V(G)$ si $d(u) + d(v) \geqslant n$ entonces $G$ es hamiltoniano.
+
+\textit{Teorema de Dirac} $ \subset $ \textit{Teorema de Ore.}\\
+
+Para todo grafo planar se cumple que: $n - m + f = 2$.\\
+
+Un \textit{grafo bipartito} cumple que para $X$ e $Y$ ($X \bigcup Y = V(G) \wedge X \bigcap Y = \emptyset$), $\nexists $ $e = (x,y)$ con $x \in X$, $y \in Y \wedge e \in E(G)$.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+$K_{n,n}$ es planar sii $n < 3$.\\
+$ $\\
+$ \sigma(K_{p,q}) = \{\sqrt{pq},-\sqrt{pq},0(p+q-2)\}$\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+\textit{Grafo planar:} representable graficamente de tal forma que ninguna arista intersecte a otra. Todo grafo planar posee un árbol generador y $m \leqslant 3(n-2)$.\\
+
+\textit{Bosque} $F$: conjunto de árboles conexos. $K(F) = 2$\\
+
+\textit{Caras:} "$ $espacios" generados producto del encierro de aristas. Su grado, o \textit{face degree} $d(f)$, equivale a la cantidad de caras que componen los bordes de la misma. Si $d(f) = 3$ la cara es un triángulo, y se lo denomina como: $\tau$. Además si $d(f) \geqslant 3 \Rightarrow 2m \leqslant 3f$, $\forall $ $ f \in F(G)$.\\
+
+Un \textit{grafo dual} $G^*$ \textit{de un} $G$ \textit{planar} se obtiene conectando los vértices de $G^*$ sii las caras correspondientes "se tocan"$ $ en $G$. $\forall $ $ G^* $ se cumple que: $ \{V(G^*) = F(G), F(G^*) = V(G) , E(G^*) = E(G)\}$. Un \textit{grafo autodual} es isomorfo a su dual: $G^* \cong G$.\\
+
+Sea $G$ sin loops, este estará $k$-colorado si para cada vértice de $G$ se lo puede pintar de un color tal que los vértices adyacentes tengan siempre un color diferente; la $k$ representa la cantidad de colores. 
+De aquí sale la definición del número cromático $K(G)$ que representa el mínimo número de colores, $k$, que cumple la propiedad. Para la coloración de aristas usamos $K'(G)$.\\
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+$ $\\
+$K_{n} \subset G$ sii $K(G) \geqslant n$\\
+$ $\\
+$K(K_{n}) = n$\\
+$ $\\
+$\forall $ $G$ bipartito, $K(G) = 2$\\
+$ $\\
+$K(G) \leqslant \Delta (G) + 1 \leqslant K'(G) + 1$\\
+$ $\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+\textit{Grafo línea} $L(G)$: Sea $G$, diremos que: $V(L(G)) = E(G)$ y las aristas de $L(G)$ se conectan a los vértices que, en su forma de arista en $G$.\\
+
+Sea $A$ la matriz de adyacencia de $G$. Los autovalores de $A$ son los autovalores de $G$. Los autovalores se consiguen con la operación $det(A - \lambda I) = 0$.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+Sea $u,v \in V(G), w \in E(G), w \in V(L(G)) \Rightarrow d(w) = d(u) + d(v) - 2$.\\
+$ $\\
+$G \cong L(G)$ sii $G$ es 2-regular.\\
+$ $\\
+$E(L(G)) = \displaystyle \frac{1}{2} \sum_{k=1}^{n} {d(v_{k})}^2 - E(G) = \displaystyle \sum_{k=1}^{n} \binom{d(v_{k})}{2}$\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+
+\textit{Espectro de un grafo} $\sigma (G)$: es el conjunto de los autovalores de $G$. 
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+$\displaystyle \sum_{k=1}^{n} \lambda_{k} = tr(A) = 0$\\
+$ $\\
+Si $\lambda \in \sigma (B) \Rightarrow \lambda ^q \in \sigma (B^q)$.\\
+$ $\\
+Si $\lambda \in \sigma (B) \Rightarrow \lambda - a$ es autovalor de $A = B - aI$.\\
+$ $\\
+Si $G \cong H \Rightarrow \sigma (G) = \sigma (H)$\\
+$ $\\
+$ \sigma (P_{n}) = \{2cos \displaystyle (  \frac{k\pi}{n+1} )\} , \forall $ $k \in \mathbb{N}$\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+$S \in V(G)$ es un \textit{corte de vértices} si $H_{1} = (V(G) - S,E(H))$ es conexa y $T \in E(G)$ es un \textit{corte de aristas} si $H_{2} = (V(H), E(G) - T)$ es conexa.
+
+La \textit{vértice conectividad} $ \kappa (G)$ es el mínimo cardinal de $S$ que haga a $H_{1} = (V(G) - S,E(H))$ no conexa. En cambio la \textit{arista conectividad} $ \lambda (G)$ es el mínimo cardinal de $T$ que hace que $H_{2} = (V(H), E(G) - T)$ sea no conexa. Además si $G$ es conexa; $\delta (G) \geqslant \lambda (G) \geqslant \kappa (G)$; y si $a \in V(G)$, $a$ es un \textit{bridge} si $ \kappa (G) = 1$ con $S = \{a\}$.\\
+
+Un \textit{path maximal} es el que no puede ser incluido en otro path.\\
+
+Sean $u,v \in V(G)$ tal que existe un camino entre ellos, diremos que estos caminos son \textit{arista-disjuntos} si no comparten aristas y diremos que estos caminos son \textit{vértice-disjuntos} si no comparten vértices (excepto por el inicial y el final).\\
+
+La \textit{matriz de incidencia} de $G$ tiene columnas que representan las aristas y las filas representan el vértice al que se conectan. En la de adyacencia obviamente tanto las filas como columnas representan vértices.\\
+
+Una \textit{hoja, o leaf,} son vértices de grado 1. Además, $\forall $ $T$ tal que $|V(T)| \geqslant 2$ tiene al menos dos hojas.
+
+\subsection{Grafos Ponderados}
+
+Un \textit{grafo ponderado}, se diferencia de un grafo cualquiera ya que cada una de sus aristas tiene un peso asignado. Hasta ahora, el peso de toda arista fue 1, pero ahora el valor puede variar. Un ejemplo muy común del uso de estos grafos, es representar ciudades con vértices y el peso de cada arista representa la distancia del camino que los conecta, en caso de que este exista. Finalmente, sea $A$ la matriz de adyacencia del grafo ponderado $G$; ahora $A_{ij} = W_{k}$ , siendo $W_{k}$ el peso de la arista que conecta a $v_{i}$ con $v_{j}$.\\
+
+$W(T) = \displaystyle \sum_{k=1}^{n-1} W_{k}$, siendo $W_{k}$ el peso de la $k$-ésima arista de $T$.\\
+
+\textit{Árbol generador del peso mínimo}: sea $G$, queremos encontrar un árbol $T$, tal que pueda generar a $G$. Además este debe tener el peso mínimo, es decir, $\forall $ $ T_{i} $ , $W(T) \leqslant W(T_{i})$.\\
+
+\textit{Algorítmo de Kruskal}: permite obtener un árbol generador usando la representación gráfica del mismo. Se deben seguir los siguientes pasos:
+\begin{enumerate}
+\item Comprobar que para $G$, conexa, $ \exists $ $T \subset G$.
+\item \textit{Si es posible} iniciar el algorítmo en el vértice con la arista de menor peso.
+\item Viajar por la arista de menor peso posible.
+\item Repetir el paso anterior, \textbf{sin crear ciclos}, teniendo en cuenta a todos los vértices a los que ya cubrimos, hasta haber llegado a todos los vértices de $G$.
+\end{enumerate}
+
+\textit{Algorítmo de Prim}: permite obtener un árbol generador usando la matriz de adyacencia del mismo. Se deben seguir los siguientes pasos:
+\begin{enumerate}
+\item Comprobar que para $G$, conexa, $ \exists $ $T \subset G$; sea $A$ la matriz de adyacencia de $G$.
+\item Elegir un vértice cualquiera.
+\item En la columna de $A$ que corresponde al vértice elegido, buscar el menor peso bajo las columnas seleccionadas.
+\item Elegir esta y volver a repetir el paso anterior, solo que ahora eliminamos la fila de los vértices ya elegidos y añadimos la columna del vértice elegido a las que usamos para encontrar los pesos mínimos. Repetimos hasta que todas las filas de $A$ hayan sido eliminadas. 
+\end{enumerate}
+
+\textit{Algorítmo de Dijkstra}: calcula desde un vértice $a$ hasta un vértice $b$ el camino más corto de menor peso. Se inicia en $a$ e iteradamente se salta al vértice adyacente por la arista de menor peso; así hasta llegar a $b$.
+
+\subsection{Grafos Orientados}
+
+Este tipo de grafos poseen aristas con flechas, que indican la dirección del flujo. Son el tipo de grafos que usamos para estudiar autómatas y los que aparecían en la unidad de relaciones. \\
+
+Supongamos que tenemos el grafo $G_{1}$ no orientado o dirigido. Este solo posee dos vértices y una arista que los conecta. Sabemos que $d(v_{1},v_{2}) = d(v_{2},v_{1}) = 1$.  En cambio sea el grafo $G_{2}$ dirigido. Este solo posee dos vértices y una arista que los conecta \textit{pero esta va de} $v_{1}$ \textit{hacia} $v_{2}$. En este caso $d(v_{1},v_{2}) = 1 \neq d(v_{2},v_{1}) = \infty$.\\
+
+\textit{Grafo fuertemente conexo:} $\forall $ $ v,u \in V(G)$ , $\exists$ camino de $v$ a $u$ y viceversa.\\
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+$d^{+}(v) =$ in-degree ("$ $aristas que ingresan")\\
+$ $\\
+$d^{-}(v) =$ out-degree ("$ $aristas que salen")\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l}
+$d(v) = d^{+}(v) + d^{-}(v)$\\
+$ $\\
+$\displaystyle \sum_{i=1}^{n} d^{-}(v_{i}) = \sum_{j=1}^{n} d^{+}(v_{j}) = m $\\
+\end{tabular}
+\label{tabla}
+\end{table}
+
+\textit{Breadth First Search (BFS):} algorítmo que transforma un grafo normal, en orientado y fuertemente conexo.
+\begin{enumerate}
+\item Tomo un vértice cualquiera.
+\item Exploro todos sus adyacentes, recordando el orden de descubrimiento.
+\item Respetando el orden antes impuesto, investigamos uno por uno los vértices adyacentes de los anteriormente encontrados; y así hasta llegar a todos los vértices del grafo.
+\end{enumerate}
+
+\textit{Depth First Search (DFS):} algorítmo que transforma un grafo normal, en orientado y fuertemente conexo.
+\begin{enumerate}
+\item Tomo un vértice cualquiera.
+\item Exploro los adyacentes, e intento ir por el camino más extenso posible, cubriendo tantos vértices como sea posible sin crear ciclos.
+\item Vuelvo para atrás si es necesario para extenderme a otras direcciones y llegar a los vértices restantes. Así hasta llegar a todos.
+\item Completar las aristas restantes de tal forma que $\forall $ $ v,u \in V(G)$ ,\\$\exists$ camino de $v$ a $u$ y viceversa.
+\end{enumerate}
+
+\textit{Torneo}: grafo orientado o digrafo, que al sacarle las orientaciones es conexo. Todo torneo tiene al menos una orientación fuertemente conexa.\\
+
+\textit{Algorítmo de Ford-Fulkerson}: Busca transportar la máxima cantidad de algo, desde una fuente a un sumidero. Cada arista tiene una capacidad máxima, y comienza con flujo nulo. Para que el flujo sea máximo se debe intentar saturar la máxima cantidad de caminos de la mejor forma posible, cosa de depende del grafo con el que estemos trabajando. 
+
+\end{document}
